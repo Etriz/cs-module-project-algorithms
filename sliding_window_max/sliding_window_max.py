@@ -5,21 +5,47 @@ Returns: a List of integers
 
 
 def sliding_window_max(nums, k):
-    # Your code here
-    window_start = 0
+    #! Your code here == brute force approach
+    # window_start = 0
+    # max_values = []
+    # # while window doesnt go past end of array
+    # while window_start + k <= len(nums):
+    #     # only look at nums in window
+    #     range_max = nums[window_start]
+    #     for index in range(window_start, window_start + k):
+    #         # find max num in window
+    #         if nums[index] > range_max:
+    #             range_max = nums[index]
+    #     # print(range_max)
+    #     max_values.append(range_max)
+    #     # move window right 1 space
+    #     window_start += 1
+
+    # return max_values
+
+    # ! better solution == done in class
+    from collections import deque
+
     max_values = []
-    # while window doesnt go past end of array
-    while window_start + k <= len(nums):
-        # only look at nums in window
-        range_max = nums[window_start]
-        for index in range(window_start, window_start + k):
-            #! find max num in window
-            if nums[index] > range_max:
-                range_max = nums[index]
-        # print(range_max)
-        max_values.append(range_max)
-        # move window right 1 space
-        window_start += 1
+    q = deque()
+    # remove all elems from a q
+    for i, n in enumerate(nums):
+        while len(q) > 0 and n > q[-1]:
+            q.pop()
+
+        q.append(n)
+
+        #  calc the window range
+        window_range = i - k + 1
+        # as long as range == k, add elems to q
+        if window_range >= 0:
+            # add max element, in this case the first in the queue, to max_values
+            max_values.append(q[0])
+
+            # check if num on the left needs to be removed
+            # if so take it out of the start of the queue
+            if nums[window_range] == q[0]:
+                q.popleft()
 
     return max_values
 
