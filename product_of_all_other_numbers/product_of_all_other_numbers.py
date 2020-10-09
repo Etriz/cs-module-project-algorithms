@@ -7,10 +7,12 @@ Returns: a List of integers
 def product_of_all_other_numbers(arr):
     # Your code here
     product = 1
+    # find the product of all values
     for num in arr:
         product *= num
     # print(f"product is {product}")
     for i, _ in enumerate(arr):
+        # divide the total product by the value at index
         arr[i] = product // arr[i]
 
     return arr

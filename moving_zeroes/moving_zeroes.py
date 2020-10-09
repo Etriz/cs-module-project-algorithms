@@ -6,7 +6,11 @@ Returns: a List of integers
 
 def moving_zeroes(arr):
     # Your code here
-    arr = [num for num in arr if num != 0] + [num for num in arr if num == 0]
+    # arr = [num for num in arr if num != 0] + [num for num in arr if num == 0]
+    for elm in arr:
+        if elm == 0:
+            arr.remove(elm)
+            arr.append(0)
     return arr
 
 

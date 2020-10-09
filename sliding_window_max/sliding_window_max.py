@@ -34,6 +34,7 @@ def sliding_window_max(nums, k):
             q.pop()
 
         q.append(n)
+        # print(f"q={q}")
 
         #  calc the window range
         window_range = i - k + 1
